@@ -1,0 +1,29 @@
+{
+  "runtime": {
+    "implementation": "CPython",
+    "version": "3.12.13",
+    "architecture": "x64",
+    "uv": "0.11.7"
+  },
+  "packager": {
+    "name": "PyInstaller",
+    "version": "6.22.3",
+    "source": "https://pypi.org/project/pyinstaller/6.22.3/",
+    "bootloader_directory": "PyInstaller/bootloader/Windows-64bit-intel",
+    "bootloader_sha256": {
+      "run.exe": "581ea23eb35cee8f9df8835c892e91416df95ca629b1a6050289aea19390e08d",
+      "runw.exe": "2291f269c3a3804fde1079462239e09a8b32fffbeeaa8f628a531faf5be77d41"
+    }
+  },
+  "sources": {
+    "python": "uv-managed cpython-3.12.13-windows-x86_64-none",
+    "python_release": "https://www.python.org/downloads/release/python-31213/",
+    "dependencies": "requirements-agent-build.txt and its recursive requirement files",
+    "note": "Runtime hashes fingerprint the inspected x64 CPython baseline. They do not replace publisher signature verification."
+  },
+  "sha256": {
+    "python.exe": "0dfbe445df3da9f94456d4e91d8feda5af587fe3cfb748e4c9fb62544909d385",
+    "python312.dll": "fc09ddaca00c7da1ab12898ad7e4fcbac8362771338860371d0b66abb7a90fc8",
+    "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066"
+  }
+}

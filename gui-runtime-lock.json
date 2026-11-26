@@ -1,0 +1,33 @@
+{
+  "versions": {
+    "python": "3.8.10 x64",
+    "tcl": "8.6.9",
+    "tk": "8.6.9",
+    "vcruntime140": "14.28.29914.0",
+    "vcruntime140_1": "14.28.29914.0",
+    "pyinstaller": "5.13.2",
+    "bootloader": "PyPI Windows-64bit-intel/runw.exe"
+  },
+  "sources": {
+    "python": "https://www.python.org/downloads/release/python-3810/",
+    "pyinstaller": "https://pypi.org/project/pyinstaller/5.13.2/",
+    "note": "Hashes record the inspected local CPython 3.8.10 runtime and installed PyPI wheels; they are build-baseline fingerprints, not a claim of vendor signature verification."
+  },
+  "sha256": {
+    "python": {
+      "python.exe": "5275c42f7359fa2c7ec473be3240e57d5ce5b9301a26bd2e98e89bb9db074581",
+      "python3.dll": "074b06ae1d0a0b5c26f0ce097c91e2f24a5d38b279849115495fc40c6c10117e",
+      "python38.dll": "2f3e368f5bcc1dda5e951682008a509751e6395f7328fd0f02c4e1a11f67c128",
+      "vcruntime140.dll": "6a0850419432735a98e56857d5cfce97e9d58a947a9863ca6afadd1c7bcab27c",
+      "vcruntime140_1.dll": "b1d3b6b3cdeb5b7b8187767cd86100b76233e7bbb9acf56c64f8288f34b269ca",
+      "DLLs/_tkinter.pyd": "d55ef406b4612695499186355a6130885ad522e48556327c0fb409e0345d552d",
+      "DLLs/tcl86t.dll": "f650d6bc321bcda3fc3ac3dec3ac4e473fb0b7b68b6c948581bcfc54653e6768",
+      "DLLs/tk86t.dll": "1a6d0871be2fa7153de22be008a20a5257b721657e6d4b24da8b1f940345d0d5"
+    },
+    "site": {
+      "PyInstaller/bootloader/Windows-64bit-intel/runw.exe": "d030451fa40f2faaf833912fe75d602eccf4c91350aa07046ae4e322182a2e48",
+      "pywin32_system32/pythoncom38.dll": "ddfc515aea27ec414cfc84bef385711c82f0618f482df9d262c490226d7fa9d7",
+      "pywin32_system32/pywintypes38.dll": "13934599ff931f97e8eac6106dc67d54609befd0b0e653b46f6c25b18830c572"
+    }
+  }
+}

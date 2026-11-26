@@ -1,0 +1,4 @@
+# Install only with CPython 3.8.10 x64 in .venv-gui.
+-r requirements-core.txt
+lxml==4.9.3
+pywin32==306; sys_platform == 'win32'

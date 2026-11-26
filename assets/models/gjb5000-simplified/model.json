@@ -1,0 +1,1662 @@
+{
+  "format_version": 3,
+  "id": "gjb5000-simplified",
+  "version": "3.0",
+  "name": "GJB 5000B 简化生命周期",
+  "phases": [
+    {
+      "id": "launch",
+      "name": "项目启动"
+    },
+    {
+      "id": "requirements",
+      "name": "软件需求分析"
+    },
+    {
+      "id": "development",
+      "name": "软件设计、实现与单元测试"
+    },
+    {
+      "id": "testing",
+      "name": "软件测试"
+    },
+    {
+      "id": "delivery",
+      "name": "交付与验收"
+    }
+  ],
+  "date_nodes": [
+    {
+      "key": "schedule.launch.start",
+      "work_id": "L01",
+      "anchor": "start",
+      "formats": [
+        "启动开始"
+      ]
+    },
+    {
+      "key": "schedule.task_book.issue",
+      "work_id": "L08",
+      "anchor": "finish",
+      "formats": [
+        "任务书文件年月",
+        "任务书版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.task_book.review",
+      "work_id": "L14",
+      "anchor": "finish",
+      "formats": [
+        "任务书评审日期"
+      ]
+    },
+    {
+      "key": "schedule.development_plan.issue",
+      "work_id": "L09",
+      "anchor": "finish",
+      "formats": [
+        "开发计划文件年月",
+        "开发计划版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.development_plan.review",
+      "work_id": "L15",
+      "anchor": "finish",
+      "formats": [
+        "开发计划评审日期"
+      ]
+    },
+    {
+      "key": "schedule.quality_plan.issue",
+      "work_id": "L10",
+      "anchor": "finish",
+      "formats": [
+        "质保计划年月",
+        "质保版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.quality_plan.review",
+      "work_id": "L15",
+      "anchor": "finish",
+      "formats": [
+        "质保评审日期"
+      ]
+    },
+    {
+      "key": "schedule.configuration_plan.issue",
+      "work_id": "L11",
+      "anchor": "finish",
+      "formats": [
+        "配管计划年月",
+        "配管版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.configuration_plan.review",
+      "work_id": "L15",
+      "anchor": "finish",
+      "formats": [
+        "配管评审日期"
+      ]
+    },
+    {
+      "key": "schedule.functional_baseline",
+      "work_id": "L17",
+      "anchor": "finish",
+      "formats": [
+        "功能基线",
+        "功能基线日期"
+      ]
+    },
+    {
+      "key": "schedule.launch.finish",
+      "work_id": "L23",
+      "anchor": "finish",
+      "formats": [
+        "启动结束"
+      ]
+    },
+    {
+      "key": "schedule.requirements.start",
+      "work_id": "R01",
+      "anchor": "start",
+      "formats": [
+        "策划开始"
+      ]
+    },
+    {
+      "key": "schedule.requirements_spec.issue",
+      "work_id": "R02",
+      "anchor": "finish",
+      "formats": [
+        "需规年月",
+        "需规版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.requirements_spec.review",
+      "work_id": "R04",
+      "anchor": "finish",
+      "formats": [
+        "需规评审日期"
+      ]
+    },
+    {
+      "key": "schedule.allocated_baseline",
+      "work_id": "R06",
+      "anchor": "finish",
+      "formats": [
+        "分配基线"
+      ]
+    },
+    {
+      "key": "schedule.milestone",
+      "work_id": "R12",
+      "anchor": "finish",
+      "formats": [
+        "里程碑日期"
+      ]
+    },
+    {
+      "key": "schedule.requirements.finish",
+      "work_id": "R13",
+      "anchor": "finish",
+      "formats": [
+        "策划结束"
+      ]
+    },
+    {
+      "key": "schedule.development.start",
+      "work_id": "D01",
+      "anchor": "start",
+      "formats": [
+        "设计开始"
+      ]
+    },
+    {
+      "key": "schedule.design.issue",
+      "work_id": "D02",
+      "anchor": "finish",
+      "formats": [
+        "设计说明年月",
+        "设计说明版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.design.review",
+      "work_id": "D04",
+      "anchor": "finish",
+      "formats": [
+        "设计说明评审日期"
+      ]
+    },
+    {
+      "key": "schedule.unit_plan.issue",
+      "work_id": "D07",
+      "anchor": "finish",
+      "formats": [
+        "单元测试计划年月",
+        "单元测试计划版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.unit_plan.review",
+      "work_id": "D09",
+      "anchor": "finish",
+      "formats": [
+        "单元测试计划评审日期"
+      ]
+    },
+    {
+      "key": "schedule.unit_description.issue",
+      "work_id": "D08",
+      "anchor": "finish",
+      "formats": [
+        "单元测试说明年月",
+        "单元测试说明版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.unit_description.review",
+      "work_id": "D09",
+      "anchor": "finish",
+      "formats": [
+        "单元测试说明评审日期"
+      ]
+    },
+    {
+      "key": "schedule.unit_report.issue",
+      "work_id": "D13",
+      "anchor": "finish",
+      "formats": [
+        "单元测试报告年月",
+        "单元测试报告版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.unit_report.review",
+      "work_id": "D14",
+      "anchor": "finish",
+      "formats": [
+        "单元测试报告评审日期"
+      ]
+    },
+    {
+      "key": "schedule.development.finish",
+      "work_id": "D20",
+      "anchor": "finish",
+      "formats": [
+        "设计结束"
+      ]
+    },
+    {
+      "key": "schedule.testing.start",
+      "work_id": "T01",
+      "anchor": "start",
+      "formats": [
+        "测试开始"
+      ]
+    },
+    {
+      "key": "schedule.system_plan.issue",
+      "work_id": "T01",
+      "anchor": "finish",
+      "formats": [
+        "系统测试计划年月",
+        "系统测试计划版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.system_plan.review",
+      "work_id": "T03",
+      "anchor": "finish",
+      "formats": [
+        "系统测试计划评审日期"
+      ]
+    },
+    {
+      "key": "schedule.system_description.issue",
+      "work_id": "T02",
+      "anchor": "finish",
+      "formats": [
+        "系统测试说明年月",
+        "系统测试说明版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.system_description.review",
+      "work_id": "T03",
+      "anchor": "finish",
+      "formats": [
+        "系统测试说明评审日期"
+      ]
+    },
+    {
+      "key": "schedule.system_report.issue",
+      "work_id": "T07",
+      "anchor": "finish",
+      "formats": [
+        "系统测试报告年月",
+        "系统测试报告版本年月日"
+      ]
+    },
+    {
+      "key": "schedule.system_report.review",
+      "work_id": "T08",
+      "anchor": "finish",
+      "formats": [
+        "系统测试报告评审日期"
+      ]
+    },
+    {
+      "key": "schedule.testing.finish",
+      "work_id": "T14",
+      "anchor": "finish",
+      "formats": [
+        "测试结束"
+      ]
+    },
+    {
+      "key": "schedule.delivery.start",
+      "work_id": "A01",
+      "anchor": "start",
+      "formats": [
+        "验收开始"
+      ]
+    },
+    {
+      "key": "schedule.version.issue",
+      "work_id": "A01",
+      "anchor": "finish",
+      "formats": [
+        "版本说明年月",
+        "版本说明年月日"
+      ]
+    },
+    {
+      "key": "schedule.manual.issue",
+      "work_id": "A02",
+      "anchor": "finish",
+      "formats": [
+        "保障手册年月",
+        "保障手册年月日"
+      ]
+    },
+    {
+      "key": "schedule.configuration_report.issue",
+      "work_id": "A03",
+      "anchor": "finish",
+      "formats": [
+        "配管报告年月",
+        "配管报告年月日"
+      ]
+    },
+    {
+      "key": "schedule.quality_report.issue",
+      "work_id": "A04",
+      "anchor": "finish",
+      "formats": [
+        "质保报告年月",
+        "质保报告年月日"
+      ]
+    },
+    {
+      "key": "schedule.summary.issue",
+      "work_id": "A05",
+      "anchor": "finish",
+      "formats": [
+        "研制总结年月",
+        "研制总结年月日"
+      ]
+    },
+    {
+      "key": "schedule.summary.review",
+      "work_id": "A07",
+      "anchor": "finish",
+      "formats": [
+        "总结评审日期"
+      ]
+    },
+    {
+      "key": "schedule.product_baseline",
+      "work_id": "A09",
+      "anchor": "finish",
+      "formats": [
+        "产品基线"
+      ]
+    },
+    {
+      "key": "schedule.delivery.finish",
+      "work_id": "A15",
+      "anchor": "finish",
+      "formats": [
+        "验收结束"
+      ]
+    },
+    {
+      "key": "schedule.code_archive",
+      "work_id": "D15",
+      "anchor": "finish",
+      "formats": [
+        "代码入库"
+      ]
+    },
+    {
+      "key": "schedule.final_code_archive",
+      "work_id": "A08",
+      "anchor": "finish",
+      "formats": [
+        "测试后代码入库"
+      ]
+    },
+    {
+      "key": "schedule.unit_preparation.start",
+      "work_id": "D10",
+      "anchor": "start",
+      "formats": [
+        "单元测试准备开始"
+      ]
+    },
+    {
+      "key": "schedule.unit_preparation.finish",
+      "work_id": "D10",
+      "anchor": "finish",
+      "formats": [
+        "单元测试准备结束"
+      ]
+    },
+    {
+      "key": "schedule.unit_execution.start",
+      "work_id": "D11",
+      "anchor": "start",
+      "formats": [
+        "单元测试执行开始"
+      ]
+    },
+    {
+      "key": "schedule.unit_execution.finish",
+      "work_id": "D11",
+      "anchor": "finish",
+      "formats": [
+        "单元测试执行结束"
+      ]
+    },
+    {
+      "key": "schedule.unit_regression.start",
+      "work_id": "D12",
+      "anchor": "start",
+      "formats": [
+        "单元测试回归开始"
+      ]
+    },
+    {
+      "key": "schedule.unit_regression.finish",
+      "work_id": "D12",
+      "anchor": "finish",
+      "formats": [
+        "单元测试回归结束"
+      ]
+    },
+    {
+      "key": "schedule.unit_summary.start",
+      "work_id": "D13",
+      "anchor": "start",
+      "formats": [
+        "单元测试总结开始"
+      ]
+    },
+    {
+      "key": "schedule.unit_summary.finish",
+      "work_id": "D13",
+      "anchor": "finish",
+      "formats": [
+        "单元测试总结结束"
+      ]
+    },
+    {
+      "key": "schedule.system_preparation.start",
+      "work_id": "T04",
+      "anchor": "start",
+      "formats": [
+        "系统测试准备开始"
+      ]
+    },
+    {
+      "key": "schedule.system_preparation.finish",
+      "work_id": "T04",
+      "anchor": "finish",
+      "formats": [
+        "系统测试准备结束"
+      ]
+    },
+    {
+      "key": "schedule.system_execution.start",
+      "work_id": "T05",
+      "anchor": "start",
+      "formats": [
+        "系统测试执行开始"
+      ]
+    },
+    {
+      "key": "schedule.system_execution.finish",
+      "work_id": "T05",
+      "anchor": "finish",
+      "formats": [
+        "系统测试执行结束"
+      ]
+    },
+    {
+      "key": "schedule.system_regression.start",
+      "work_id": "T06",
+      "anchor": "start",
+      "formats": [
+        "系统测试回归开始"
+      ]
+    },
+    {
+      "key": "schedule.system_regression.finish",
+      "work_id": "T06",
+      "anchor": "finish",
+      "formats": [
+        "系统测试回归结束"
+      ]
+    },
+    {
+      "key": "schedule.system_summary.start",
+      "work_id": "T07",
+      "anchor": "start",
+      "formats": [
+        "系统测试总结开始"
+      ]
+    },
+    {
+      "key": "schedule.system_summary.finish",
+      "work_id": "T07",
+      "anchor": "finish",
+      "formats": [
+        "系统测试总结结束"
+      ]
+    }
+  ],
+  "works": [
+    {
+      "id": "L01",
+      "phase_id": "launch",
+      "name": "组建项目团队，召开启动会议",
+      "default_hours": 1,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "项目软件质量师",
+        "产品负责人",
+        "项目配管",
+        "所级质量师",
+        "部门领导",
+        "产品库配管",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "L02",
+      "phase_id": "launch",
+      "name": "制定项目启动阶段工作进度计划",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "L03",
+      "phase_id": "launch",
+      "name": "搭建配置库（初始构建）",
+      "default_hours": 9,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "L04",
+      "phase_id": "launch",
+      "name": "定义生命周期及过程",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "L05",
+      "phase_id": "launch",
+      "name": "进行功能分解",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "L06",
+      "phase_id": "launch",
+      "name": "项目估算",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "L07",
+      "phase_id": "launch",
+      "name": "需求讨论",
+      "default_hours": 4,
+      "work_type": "需求分析",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "产品负责人",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "L08",
+      "phase_id": "launch",
+      "name": "编写软件研制任务书",
+      "default_hours": 11,
+      "work_type": "需求分析",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "L09",
+      "phase_id": "launch",
+      "name": "制定项目软件开发计划",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "L10",
+      "phase_id": "launch",
+      "name": "制定软件质量保证计划",
+      "default_hours": 8,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "L11",
+      "phase_id": "launch",
+      "name": "制定软件配置管理计划",
+      "default_hours": 8,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "L12",
+      "phase_id": "launch",
+      "name": "质量保证产品审核",
+      "default_hours": 9,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "L13",
+      "phase_id": "launch",
+      "name": "制定项目测量项规格",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "L14",
+      "phase_id": "launch",
+      "name": "评审任务书",
+      "default_hours": 1,
+      "work_type": "需求分析",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "项目软件质量师",
+        "产品负责人",
+        "项目配管",
+        "所级质量师",
+        "部门领导",
+        "产品库配管",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "L15",
+      "phase_id": "launch",
+      "name": "项目计划评审",
+      "default_hours": 1,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "项目软件质量师",
+        "产品负责人",
+        "项目配管",
+        "所级质量师",
+        "部门领导",
+        "产品库配管",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "L16",
+      "phase_id": "launch",
+      "name": "评审资料入库、配置审核与配置状态报告",
+      "default_hours": 11,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "L17",
+      "phase_id": "launch",
+      "name": "建立基线、配置审核与状态报告",
+      "default_hours": 6,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "L18",
+      "phase_id": "launch",
+      "name": "质量保证过程审核",
+      "default_hours": 3,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师",
+        "所级质量师"
+      ]
+    },
+    {
+      "id": "L19",
+      "phase_id": "launch",
+      "name": "跟踪不符合项",
+      "default_hours": 3,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师",
+        "所级质量师"
+      ]
+    },
+    {
+      "id": "L20",
+      "phase_id": "launch",
+      "name": "编写配置审核报告",
+      "default_hours": 6,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "L21",
+      "phase_id": "launch",
+      "name": "编写质量保证审核报告",
+      "default_hours": 6,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "L22",
+      "phase_id": "launch",
+      "name": "编写阶段报告及组织阶段评审",
+      "default_hours": 1,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "项目软件质量师",
+        "产品负责人",
+        "项目配管",
+        "所级质量师",
+        "部门领导",
+        "产品库配管",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "L23",
+      "phase_id": "launch",
+      "name": "细化下阶段工作任务",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "R01",
+      "phase_id": "requirements",
+      "name": "分析软件需求",
+      "default_hours": 4,
+      "work_type": "需求分析",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "产品负责人",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "R02",
+      "phase_id": "requirements",
+      "name": "编写软件需求规格说明书",
+      "default_hours": 11,
+      "work_type": "需求分析",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "R03",
+      "phase_id": "requirements",
+      "name": "质量保证产品审核",
+      "default_hours": 8,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "R04",
+      "phase_id": "requirements",
+      "name": "评审软件需求规格说明书",
+      "default_hours": 4,
+      "work_type": "需求分析",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "产品负责人",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "R05",
+      "phase_id": "requirements",
+      "name": "评审资料入库、配置审核与配置状态报告",
+      "default_hours": 8,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "R06",
+      "phase_id": "requirements",
+      "name": "建立基线、配置审核与状态报告",
+      "default_hours": 8,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "R07",
+      "phase_id": "requirements",
+      "name": "配置库维护",
+      "default_hours": 8,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "R08",
+      "phase_id": "requirements",
+      "name": "编写配置审核报告",
+      "default_hours": 8,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "R09",
+      "phase_id": "requirements",
+      "name": "编写质量保证审核报告",
+      "default_hours": 8,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "R10",
+      "phase_id": "requirements",
+      "name": "质量保证过程审核",
+      "default_hours": 4,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师",
+        "所级质量师"
+      ]
+    },
+    {
+      "id": "R11",
+      "phase_id": "requirements",
+      "name": "跟踪不符合项",
+      "default_hours": 4,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师",
+        "所级质量师"
+      ]
+    },
+    {
+      "id": "R12",
+      "phase_id": "requirements",
+      "name": "编写里程碑报告及组织里程碑评审",
+      "default_hours": 1,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "项目软件质量师",
+        "产品负责人",
+        "项目配管",
+        "所级质量师",
+        "部门领导",
+        "产品库配管",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "R13",
+      "phase_id": "requirements",
+      "name": "细化下阶段工作任务",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "D01",
+      "phase_id": "development",
+      "name": "软件概要设计",
+      "default_hours": 28,
+      "work_type": "软件设计",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "D02",
+      "phase_id": "development",
+      "name": "软件详细设计",
+      "default_hours": 28,
+      "work_type": "软件设计",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "D03",
+      "phase_id": "development",
+      "name": "质量保证产品审核",
+      "default_hours": 6,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "D04",
+      "phase_id": "development",
+      "name": "软件设计评审",
+      "default_hours": 9,
+      "work_type": "软件设计",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "产品负责人",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "D05",
+      "phase_id": "development",
+      "name": "评审资料入库、配置审核与配置状态报告",
+      "default_hours": 6,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "D06",
+      "phase_id": "development",
+      "name": "编码",
+      "default_hours": 68,
+      "work_type": "软件开发",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "D06A",
+      "phase_id": "development",
+      "name": "代码审查",
+      "default_hours": 23,
+      "work_type": "软件开发",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "产品负责人",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "D06B",
+      "phase_id": "development",
+      "name": "代码质量保证产品审核",
+      "default_hours": 6,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "D07",
+      "phase_id": "development",
+      "name": "编写单元／仿真测试计划",
+      "default_hours": 9,
+      "work_type": "软件测试",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "D08",
+      "phase_id": "development",
+      "name": "编写单元／仿真测试说明",
+      "default_hours": 9,
+      "work_type": "软件测试",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "D08A",
+      "phase_id": "development",
+      "name": "质量保证产品审核",
+      "default_hours": 8,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "D09",
+      "phase_id": "development",
+      "name": "单元／仿真测试计划与说明联合评审",
+      "default_hours": 3,
+      "work_type": "软件测试",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "产品负责人",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "D10",
+      "phase_id": "development",
+      "name": "单元／仿真测试准备",
+      "default_hours": 8,
+      "work_type": "软件测试",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "D11",
+      "phase_id": "development",
+      "name": "单元／仿真测试执行及缺陷修改",
+      "default_hours": 9,
+      "work_type": "软件测试",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "D12",
+      "phase_id": "development",
+      "name": "单元／仿真回归测试",
+      "default_hours": 16,
+      "work_type": "软件测试",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "D13",
+      "phase_id": "development",
+      "name": "编写单元／仿真测试报告",
+      "default_hours": 9,
+      "work_type": "软件测试",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "D14",
+      "phase_id": "development",
+      "name": "单元／仿真测试报告评审",
+      "default_hours": 3,
+      "work_type": "软件测试",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "产品负责人",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "D14A",
+      "phase_id": "development",
+      "name": "质量保证产品审核",
+      "default_hours": 6,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "D15",
+      "phase_id": "development",
+      "name": "代码、评审资料入库、配置审核与配置状态报告",
+      "default_hours": 6,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "D15A",
+      "phase_id": "development",
+      "name": "编写配置审核报告",
+      "default_hours": 6,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "D16",
+      "phase_id": "development",
+      "name": "编写质量保证审核报告",
+      "default_hours": 6,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "D17",
+      "phase_id": "development",
+      "name": "质量保证过程审核",
+      "default_hours": 3,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师",
+        "所级质量师"
+      ]
+    },
+    {
+      "id": "D18",
+      "phase_id": "development",
+      "name": "跟踪不符合项",
+      "default_hours": 3,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师",
+        "所级质量师"
+      ]
+    },
+    {
+      "id": "D19",
+      "phase_id": "development",
+      "name": "编写阶段报告及组织阶段评审",
+      "default_hours": 1,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "项目软件质量师",
+        "产品负责人",
+        "项目配管",
+        "所级质量师",
+        "部门领导",
+        "产品库配管",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "D20",
+      "phase_id": "development",
+      "name": "细化下阶段工作任务",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "T01",
+      "phase_id": "testing",
+      "name": "制定软件配置项/系统测试计划",
+      "default_hours": 5,
+      "work_type": "软件测试",
+      "owner_role": "产品负责人",
+      "executor_roles": [
+        "产品负责人",
+        "测试人员"
+      ]
+    },
+    {
+      "id": "T02",
+      "phase_id": "testing",
+      "name": "编写软件配置项/系统测试说明",
+      "default_hours": 5,
+      "work_type": "软件测试",
+      "owner_role": "产品负责人",
+      "executor_roles": [
+        "产品负责人",
+        "测试人员"
+      ]
+    },
+    {
+      "id": "T02A",
+      "phase_id": "testing",
+      "name": "质量保证产品审核",
+      "default_hours": 6,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "T03",
+      "phase_id": "testing",
+      "name": "软件配置项/系统测试计划和软件配置项/系统说明评审",
+      "default_hours": 2,
+      "work_type": "软件测试",
+      "owner_role": "产品负责人",
+      "executor_roles": [
+        "软件负责人",
+        "设计人员",
+        "测试人员",
+        "产品负责人"
+      ]
+    },
+    {
+      "id": "T04",
+      "phase_id": "testing",
+      "name": "建立软件测试环境",
+      "default_hours": 5,
+      "work_type": "软件测试",
+      "owner_role": "产品负责人",
+      "executor_roles": [
+        "产品负责人",
+        "测试人员"
+      ]
+    },
+    {
+      "id": "T05",
+      "phase_id": "testing",
+      "name": "实施软件测试及缺陷修改",
+      "default_hours": 5,
+      "work_type": "软件测试",
+      "owner_role": "产品负责人",
+      "executor_roles": [
+        "产品负责人",
+        "测试人员"
+      ]
+    },
+    {
+      "id": "T06",
+      "phase_id": "testing",
+      "name": "配置项回归测试",
+      "default_hours": 16,
+      "work_type": "软件测试",
+      "owner_role": "产品负责人",
+      "executor_roles": [
+        "产品负责人",
+        "测试人员"
+      ]
+    },
+    {
+      "id": "T07",
+      "phase_id": "testing",
+      "name": "编写软件配置项/系统测试报告",
+      "default_hours": 5,
+      "work_type": "软件测试",
+      "owner_role": "产品负责人",
+      "executor_roles": [
+        "产品负责人",
+        "测试人员"
+      ]
+    },
+    {
+      "id": "T07A",
+      "phase_id": "testing",
+      "name": "质量保证产品审核",
+      "default_hours": 6,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "T08",
+      "phase_id": "testing",
+      "name": "软件配置项/系统测试报告评审",
+      "default_hours": 2,
+      "work_type": "软件测试",
+      "owner_role": "产品负责人",
+      "executor_roles": [
+        "软件负责人",
+        "设计人员",
+        "测试人员",
+        "产品负责人"
+      ]
+    },
+    {
+      "id": "T09",
+      "phase_id": "testing",
+      "name": "评审资料及代码变更入库、配置审核与配置状态报告",
+      "default_hours": 6,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "T09A",
+      "phase_id": "testing",
+      "name": "编写配置审核报告",
+      "default_hours": 6,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "T10",
+      "phase_id": "testing",
+      "name": "编写质量保证审核报告",
+      "default_hours": 6,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "T11",
+      "phase_id": "testing",
+      "name": "质量保证过程审核",
+      "default_hours": 3,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师",
+        "所级质量师"
+      ]
+    },
+    {
+      "id": "T12",
+      "phase_id": "testing",
+      "name": "跟踪不符合项",
+      "default_hours": 3,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师",
+        "所级质量师"
+      ]
+    },
+    {
+      "id": "T13",
+      "phase_id": "testing",
+      "name": "编写阶段报告及组织阶段评审",
+      "default_hours": 1,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "项目软件质量师",
+        "产品负责人",
+        "项目配管",
+        "所级质量师",
+        "部门领导",
+        "产品库配管",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "T14",
+      "phase_id": "testing",
+      "name": "细化下阶段工作任务",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "A01",
+      "phase_id": "delivery",
+      "name": "编写软件版本说明",
+      "default_hours": 9,
+      "work_type": "交付验收",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "A02",
+      "phase_id": "delivery",
+      "name": "编写用户手册/固件保障手册",
+      "default_hours": 9,
+      "work_type": "交付验收",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "A03",
+      "phase_id": "delivery",
+      "name": "编写软件配置管理报告",
+      "default_hours": 8,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "A04",
+      "phase_id": "delivery",
+      "name": "编写软件质量保证报告",
+      "default_hours": 8,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "A05",
+      "phase_id": "delivery",
+      "name": "编写项目研制总结报告",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "A06",
+      "phase_id": "delivery",
+      "name": "质量保证产品审核",
+      "default_hours": 6,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "A07",
+      "phase_id": "delivery",
+      "name": "项目验收评审",
+      "default_hours": 1,
+      "work_type": "交付验收",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人",
+        "项目软件质量师",
+        "产品负责人",
+        "项目配管",
+        "所级质量师",
+        "部门领导",
+        "产品库配管",
+        "设计人员"
+      ]
+    },
+    {
+      "id": "A08",
+      "phase_id": "delivery",
+      "name": "评审资料及测试后代码入库、配置审核与配置状态报告",
+      "default_hours": 6,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "A09",
+      "phase_id": "delivery",
+      "name": "建立产品基线、配置审核与状态报告",
+      "default_hours": 6,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "A10",
+      "phase_id": "delivery",
+      "name": "编写配置审核报告",
+      "default_hours": 6,
+      "work_type": "配置管理",
+      "owner_role": "项目配管",
+      "executor_roles": [
+        "项目配管"
+      ]
+    },
+    {
+      "id": "A11",
+      "phase_id": "delivery",
+      "name": "编写质量保证审核报告",
+      "default_hours": 6,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师"
+      ]
+    },
+    {
+      "id": "A12",
+      "phase_id": "delivery",
+      "name": "质量保证过程审核",
+      "default_hours": 3,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师",
+        "所级质量师"
+      ]
+    },
+    {
+      "id": "A13",
+      "phase_id": "delivery",
+      "name": "跟踪不符合项",
+      "default_hours": 3,
+      "work_type": "质量保证",
+      "owner_role": "项目软件质量师",
+      "executor_roles": [
+        "项目软件质量师",
+        "所级质量师"
+      ]
+    },
+    {
+      "id": "A14",
+      "phase_id": "delivery",
+      "name": "项目组内总结",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    },
+    {
+      "id": "A15",
+      "phase_id": "delivery",
+      "name": "整理并提交资产",
+      "default_hours": 11,
+      "work_type": "项目管理",
+      "owner_role": "软件负责人",
+      "executor_roles": [
+        "软件负责人"
+      ]
+    }
+  ]
+}

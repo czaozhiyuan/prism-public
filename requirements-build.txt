@@ -1,0 +1,2 @@
+# GUI build entry; Agent uses requirements-agent-build.txt.
+-r requirements-gui-build.txt

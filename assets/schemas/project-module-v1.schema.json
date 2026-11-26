@@ -1,0 +1,563 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PRISM Module Format v1 模块数据",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "module_format_version",
+        "data_type",
+        "module_id",
+        "name"
+      ],
+      "properties": {
+        "module_format_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "data_type": {
+          "const": "feature"
+        },
+        "module_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "code": {
+          "type": "string"
+        },
+        "task_description": {
+          "type": "string"
+        },
+        "requirement_description": {
+          "type": "string"
+        },
+        "design_description": {
+          "type": "string"
+        },
+        "unit_tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "procedure": {
+                "type": "string"
+              },
+              "expected_result": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "result_image": {
+                "type": "string"
+              },
+              "execution_status": {
+                "type": "string",
+                "enum": [
+                  "",
+                  "not_recorded",
+                  "not_executed",
+                  "passed",
+                  "failed"
+                ],
+                "default": "not_recorded"
+              },
+              "actual_date": {
+                "type": "string",
+                "pattern": "^(?:[0-9]{4}-[0-9]{2}-[0-9]{2})?$"
+              },
+              "actual_executor": {
+                "type": "string",
+                "readOnly": true,
+                "deprecated": true,
+                "description": "Legacy stored history only; generated personnel come from project roles."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "config_tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "procedure": {
+                "type": "string"
+              },
+              "expected_result": {
+                "type": "string"
+              },
+              "record": {
+                "type": "string"
+              },
+              "result_image": {
+                "type": "string"
+              },
+              "execution_status": {
+                "type": "string",
+                "enum": [
+                  "",
+                  "not_recorded",
+                  "not_executed",
+                  "passed",
+                  "failed"
+                ],
+                "default": "not_recorded"
+              },
+              "actual_date": {
+                "type": "string",
+                "pattern": "^(?:[0-9]{4}-[0-9]{2}-[0-9]{2})?$"
+              },
+              "actual_executor": {
+                "type": "string",
+                "readOnly": true,
+                "deprecated": true,
+                "description": "Legacy stored history only; generated personnel come from project roles."
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "module_format_version",
+        "data_type",
+        "module_id",
+        "name"
+      ],
+      "properties": {
+        "module_format_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "data_type": {
+          "const": "performance"
+        },
+        "module_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "requirement_description": {
+          "type": "string"
+        },
+        "design_description": {
+          "type": "string"
+        },
+        "unit_tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "procedure": {
+                "type": "string"
+              },
+              "expected_result": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "result_image": {
+                "type": "string"
+              },
+              "execution_status": {
+                "type": "string",
+                "enum": [
+                  "",
+                  "not_recorded",
+                  "not_executed",
+                  "passed",
+                  "failed"
+                ],
+                "default": "not_recorded"
+              },
+              "actual_date": {
+                "type": "string",
+                "pattern": "^(?:[0-9]{4}-[0-9]{2}-[0-9]{2})?$"
+              },
+              "actual_executor": {
+                "type": "string",
+                "readOnly": true,
+                "deprecated": true,
+                "description": "Legacy stored history only; generated personnel come from project roles."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "config_tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "procedure": {
+                "type": "string"
+              },
+              "expected_result": {
+                "type": "string"
+              },
+              "record": {
+                "type": "string"
+              },
+              "result_image": {
+                "type": "string"
+              },
+              "execution_status": {
+                "type": "string",
+                "enum": [
+                  "",
+                  "not_recorded",
+                  "not_executed",
+                  "passed",
+                  "failed"
+                ],
+                "default": "not_recorded"
+              },
+              "actual_date": {
+                "type": "string",
+                "pattern": "^(?:[0-9]{4}-[0-9]{2}-[0-9]{2})?$"
+              },
+              "actual_executor": {
+                "type": "string",
+                "readOnly": true,
+                "deprecated": true,
+                "description": "Legacy stored history only; generated personnel come from project roles."
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "module_format_version",
+        "data_type",
+        "module_id",
+        "name"
+      ],
+      "properties": {
+        "module_format_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "data_type": {
+          "const": "interface"
+        },
+        "module_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "code": {
+          "type": "string"
+        },
+        "direction": {
+          "type": "string"
+        },
+        "definition": {
+          "type": "string"
+        },
+        "requirement_description": {
+          "type": "string"
+        },
+        "design_description": {
+          "type": "string"
+        },
+        "unit_tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "procedure": {
+                "type": "string"
+              },
+              "expected_result": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "result_image": {
+                "type": "string"
+              },
+              "execution_status": {
+                "type": "string",
+                "enum": [
+                  "",
+                  "not_recorded",
+                  "not_executed",
+                  "passed",
+                  "failed"
+                ],
+                "default": "not_recorded"
+              },
+              "actual_date": {
+                "type": "string",
+                "pattern": "^(?:[0-9]{4}-[0-9]{2}-[0-9]{2})?$"
+              },
+              "actual_executor": {
+                "type": "string",
+                "readOnly": true,
+                "deprecated": true,
+                "description": "Legacy stored history only; generated personnel come from project roles."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "config_tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "procedure": {
+                "type": "string"
+              },
+              "expected_result": {
+                "type": "string"
+              },
+              "record": {
+                "type": "string"
+              },
+              "result_image": {
+                "type": "string"
+              },
+              "execution_status": {
+                "type": "string",
+                "enum": [
+                  "",
+                  "not_recorded",
+                  "not_executed",
+                  "passed",
+                  "failed"
+                ],
+                "default": "not_recorded"
+              },
+              "actual_date": {
+                "type": "string",
+                "pattern": "^(?:[0-9]{4}-[0-9]{2}-[0-9]{2})?$"
+              },
+              "actual_executor": {
+                "type": "string",
+                "readOnly": true,
+                "deprecated": true,
+                "description": "Legacy stored history only; generated personnel come from project roles."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "pin_definition": {
+          "type": "string"
+        },
+        "initial_value": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "module_format_version",
+        "data_type",
+        "module_id",
+        "name"
+      ],
+      "properties": {
+        "module_format_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "data_type": {
+          "const": "reliability"
+        },
+        "module_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "code": {
+          "type": "string"
+        },
+        "task_description": {
+          "type": "string"
+        },
+        "requirement_description": {
+          "type": "string"
+        },
+        "design_description": {
+          "type": "string"
+        },
+        "unit_tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "procedure": {
+                "type": "string"
+              },
+              "expected_result": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "result_image": {
+                "type": "string"
+              },
+              "execution_status": {
+                "type": "string",
+                "enum": [
+                  "",
+                  "not_recorded",
+                  "not_executed",
+                  "passed",
+                  "failed"
+                ],
+                "default": "not_recorded"
+              },
+              "actual_date": {
+                "type": "string",
+                "pattern": "^(?:[0-9]{4}-[0-9]{2}-[0-9]{2})?$"
+              },
+              "actual_executor": {
+                "type": "string",
+                "readOnly": true,
+                "deprecated": true,
+                "description": "Legacy stored history only; generated personnel come from project roles."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "config_tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "procedure": {
+                "type": "string"
+              },
+              "expected_result": {
+                "type": "string"
+              },
+              "record": {
+                "type": "string"
+              },
+              "result_image": {
+                "type": "string"
+              },
+              "execution_status": {
+                "type": "string",
+                "enum": [
+                  "",
+                  "not_recorded",
+                  "not_executed",
+                  "passed",
+                  "failed"
+                ],
+                "default": "not_recorded"
+              },
+              "actual_date": {
+                "type": "string",
+                "pattern": "^(?:[0-9]{4}-[0-9]{2}-[0-9]{2})?$"
+              },
+              "actual_executor": {
+                "type": "string",
+                "readOnly": true,
+                "deprecated": true,
+                "description": "Legacy stored history only; generated personnel come from project roles."
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

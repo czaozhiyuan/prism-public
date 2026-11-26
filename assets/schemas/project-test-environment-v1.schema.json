@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:prism:schema:project-test-environment-v1",
+  "title": "PRISM test_environment field group v1",
+  "type": "object",
+  "required": [
+    "format_version",
+    "data_type",
+    "fields"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "data_type": {
+      "type": "string",
+      "const": "test_environment"
+    },
+    "fields": {
+      "type": "object",
+      "properties": {
+        "测试环境软件工具": {
+          "type": "string"
+        },
+        "需求环境软件工具": {
+          "type": "string"
+        },
+        "软件工具环境差异结论": {
+          "type": "string"
+        },
+        "测试供电方式": {
+          "type": "string"
+        },
+        "需求供电方式": {
+          "type": "string"
+        },
+        "供电方式差异结论": {
+          "type": "string"
+        },
+        "测试工作环境": {
+          "type": "string"
+        },
+        "需求工作环境": {
+          "type": "string"
+        },
+        "工作环境差异结论": {
+          "type": "string"
+        },
+        "测试环境影响及有效性评估": {
+          "type": "string"
+        },
+        "测试仪器名称": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

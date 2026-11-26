@@ -1,0 +1,20 @@
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.7z binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+
+*.py text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+*.bat text eol=crlf
+
+# Keep example source bytes stable for manifest SHA-256.
+assets/guides/examples/picture-insertion/*.ps1 text eol=lf
+assets/guides/examples/picture-insertion/pictures/*.ps1 text eol=lf

@@ -1,0 +1,246 @@
+{
+  "input": {
+    "name": "规范化样例",
+    "model": {
+      "id": "gjb5000-simplified",
+      "version": "3.0"
+    },
+    "fields": {
+      "布尔": true,
+      "整数": 1,
+      "浮点": 1.0,
+      "空": null,
+      "文本": " 原样保留 "
+    },
+    "schedule": {
+      "project_start": "2026-03-02",
+      "dates": {
+        "结束": "2026-03-10",
+        "开始": "2026-03-02"
+      },
+      "phases": [
+        {
+          "id": "build",
+          "name": "构建",
+          "duration": 2,
+          "start": "2026-03-02",
+          "finish": "2026-03-03"
+        }
+      ],
+      "work_hours": {
+        "D01": 2,
+        "L01": 3
+      }
+    },
+    "templates": {
+      "mode": "custom",
+      "enabled_ids": [
+        "asset:templates/docx/z.docx",
+        "asset:templates/docx/a.docx"
+      ]
+    },
+    "modules": {
+      "feature": [
+        {
+          "module_id": "11111111-1111-4111-8111-111111111111",
+          "data": {
+            "name": "功能 一",
+            "code": "F-1",
+            "task_description": "任务",
+            "requirement_description": "需求",
+            "design_description": "设计",
+            "unit_tests": [
+              {
+                "name": "UT-1",
+                "purpose": "目的",
+                "procedure": "步骤",
+                "expected_result": "期望",
+                "result": "结果"
+              },
+              {
+                "name": "UT-2",
+                "purpose": "目的2",
+                "procedure": "步骤2",
+                "expected_result": "期望2",
+                "result": "结果2"
+              }
+            ],
+            "config_tests": [
+              {
+                "name": "CT-1",
+                "purpose": "目的",
+                "procedure": "步骤",
+                "expected_result": "期望",
+                "record": "记录"
+              }
+            ]
+          }
+        },
+        {
+          "module_id": "22222222-2222-4222-8222-222222222222",
+          "data": {
+            "name": "功能 二",
+            "code": "F-1",
+            "task_description": "任务 二",
+            "requirement_description": "二",
+            "design_description": "设计 二",
+            "unit_tests": [
+              {
+                "name": "测试 二",
+                "purpose": "验证",
+                "procedure": "执行",
+                "expected_result": "通过",
+                "result": "二"
+              }
+            ],
+            "config_tests": [
+              {
+                "name": "配置 二",
+                "purpose": "验证",
+                "procedure": "执行",
+                "expected_result": "通过",
+                "record": "二"
+              }
+            ]
+          }
+        }
+      ],
+      "performance": [],
+      "interface": [],
+      "reliability": []
+    }
+  },
+  "projection": {
+    "name": "规范化样例",
+    "model": {
+      "id": "gjb5000-simplified",
+      "version": "3.0"
+    },
+    "fields": {
+      "布尔": true,
+      "整数": 1,
+      "浮点": 1.0,
+      "空": null,
+      "文本": " 原样保留 "
+    },
+    "schedule": {
+      "project_start": "2026-03-02",
+      "dates": {
+        "结束": "2026-03-10",
+        "开始": "2026-03-02"
+      },
+      "phases": [
+        {
+          "id": "build",
+          "name": "构建",
+          "duration": 2,
+          "start": "2026-03-02",
+          "finish": "2026-03-03"
+        }
+      ],
+      "work_hours": {
+        "D01": 2,
+        "L01": 3
+      }
+    },
+    "templates": {
+      "mode": "custom",
+      "enabled_ids": [
+        "asset:templates/docx/a.docx",
+        "asset:templates/docx/z.docx"
+      ]
+    },
+    "modules": {
+      "feature": [
+        {
+          "module_id": "11111111-1111-4111-8111-111111111111",
+          "data": {
+            "name": "功能 一",
+            "code": "F-1",
+            "task_description": "任务",
+            "requirement_description": "需求",
+            "design_description": "设计",
+            "unit_tests": [
+              {
+                "name": "UT-1",
+                "purpose": "目的",
+                "procedure": "步骤",
+                "expected_result": "期望",
+                "result": "结果",
+                "result_image": "",
+                "execution_status": "not_recorded",
+                "actual_date": "",
+                "actual_executor": ""
+              },
+              {
+                "name": "UT-2",
+                "purpose": "目的2",
+                "procedure": "步骤2",
+                "expected_result": "期望2",
+                "result": "结果2",
+                "result_image": "",
+                "execution_status": "not_recorded",
+                "actual_date": "",
+                "actual_executor": ""
+              }
+            ],
+            "config_tests": [
+              {
+                "name": "CT-1",
+                "purpose": "目的",
+                "procedure": "步骤",
+                "expected_result": "期望",
+                "record": "记录",
+                "result_image": "",
+                "execution_status": "not_recorded",
+                "actual_date": "",
+                "actual_executor": ""
+              }
+            ]
+          }
+        },
+        {
+          "module_id": "22222222-2222-4222-8222-222222222222",
+          "data": {
+            "name": "功能 二",
+            "code": "F-1",
+            "task_description": "任务 二",
+            "requirement_description": "二",
+            "design_description": "设计 二",
+            "unit_tests": [
+              {
+                "name": "测试 二",
+                "purpose": "验证",
+                "procedure": "执行",
+                "expected_result": "通过",
+                "result": "二",
+                "result_image": "",
+                "execution_status": "not_recorded",
+                "actual_date": "",
+                "actual_executor": ""
+              }
+            ],
+            "config_tests": [
+              {
+                "name": "配置 二",
+                "purpose": "验证",
+                "procedure": "执行",
+                "expected_result": "通过",
+                "record": "二",
+                "result_image": "",
+                "execution_status": "not_recorded",
+                "actual_date": "",
+                "actual_executor": ""
+              }
+            ]
+          }
+        }
+      ],
+      "performance": [],
+      "interface": [],
+      "reliability": []
+    }
+  },
+  "canonical_utf8": "{\"fields\":{\"布尔\":true,\"整数\":1,\"文本\":\" 原样保留 \",\"浮点\":1.0,\"空\":null},\"model\":{\"id\":\"gjb5000-simplified\",\"version\":\"3.0\"},\"modules\":{\"feature\":[{\"data\":{\"code\":\"F-1\",\"config_tests\":[{\"actual_date\":\"\",\"actual_executor\":\"\",\"execution_status\":\"not_recorded\",\"expected_result\":\"期望\",\"name\":\"CT-1\",\"procedure\":\"步骤\",\"purpose\":\"目的\",\"record\":\"记录\",\"result_image\":\"\"}],\"design_description\":\"设计\",\"name\":\"功能 一\",\"requirement_description\":\"需求\",\"task_description\":\"任务\",\"unit_tests\":[{\"actual_date\":\"\",\"actual_executor\":\"\",\"execution_status\":\"not_recorded\",\"expected_result\":\"期望\",\"name\":\"UT-1\",\"procedure\":\"步骤\",\"purpose\":\"目的\",\"result\":\"结果\",\"result_image\":\"\"},{\"actual_date\":\"\",\"actual_executor\":\"\",\"execution_status\":\"not_recorded\",\"expected_result\":\"期望2\",\"name\":\"UT-2\",\"procedure\":\"步骤2\",\"purpose\":\"目的2\",\"result\":\"结果2\",\"result_image\":\"\"}]},\"module_id\":\"11111111-1111-4111-8111-111111111111\"},{\"data\":{\"code\":\"F-1\",\"config_tests\":[{\"actual_date\":\"\",\"actual_executor\":\"\",\"execution_status\":\"not_recorded\",\"expected_result\":\"通过\",\"name\":\"配置 二\",\"procedure\":\"执行\",\"purpose\":\"验证\",\"record\":\"二\",\"result_image\":\"\"}],\"design_description\":\"设计 二\",\"name\":\"功能 二\",\"requirement_description\":\"二\",\"task_description\":\"任务 二\",\"unit_tests\":[{\"actual_date\":\"\",\"actual_executor\":\"\",\"execution_status\":\"not_recorded\",\"expected_result\":\"通过\",\"name\":\"测试 二\",\"procedure\":\"执行\",\"purpose\":\"验证\",\"result\":\"二\",\"result_image\":\"\"}]},\"module_id\":\"22222222-2222-4222-8222-222222222222\"}],\"interface\":[],\"performance\":[],\"reliability\":[]},\"name\":\"规范化样例\",\"schedule\":{\"dates\":{\"开始\":\"2026-03-02\",\"结束\":\"2026-03-10\"},\"phases\":[{\"duration\":2,\"finish\":\"2026-03-03\",\"id\":\"build\",\"name\":\"构建\",\"start\":\"2026-03-02\"}],\"project_start\":\"2026-03-02\",\"work_hours\":{\"D01\":2,\"L01\":3}},\"templates\":{\"enabled_ids\":[\"asset:templates/docx/a.docx\",\"asset:templates/docx/z.docx\"],\"mode\":\"custom\"}}",
+  "revision": "sha256:c90647261909151d45182f7a071aa85618c4e4275ed9dea85e24adb50f258282"
+}

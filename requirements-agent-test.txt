@@ -1,0 +1,7 @@
+# Agent tests are separate from the exact-lock packager environment.
+-r requirements-agent.txt
+pytest==8.3.5
+packaging==26.3
+colorama==0.4.6
+iniconfig==2.1.0
+pluggy==1.5.0

@@ -1,0 +1,523 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PRISM Project Format v7 基本数据",
+  "type": "object",
+  "required": [
+    "format_version",
+    "data_type",
+    "name",
+    "model",
+    "fields",
+    "schedule",
+    "templates",
+    "outputs",
+    "modules",
+    "groups"
+  ],
+  "properties": {
+    "format_version": {
+      "const": 7,
+      "type": "integer"
+    },
+    "data_type": {
+      "const": "basic"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(?!\\.{1,2}(?:@|:|$))[A-Za-z0-9_.-]+(?![\\s\\S])"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(?!\\.{1,2}(?:@|:|$))[A-Za-z0-9_.-]+(?![\\s\\S])"
+        }
+      },
+      "additionalProperties": false
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      },
+      "properties": {
+        "系统组成与软件边界图": {
+          "type": "string"
+        },
+        "软件架构图": {
+          "type": "string"
+        },
+        "接口关系图": {
+          "type": "string"
+        },
+        "主要流程算法图": {
+          "type": "string"
+        },
+        "测试环境与接线图": {
+          "type": "string"
+        },
+        "进度里程碑图": {
+          "type": "string"
+        },
+        "IDE": {
+          "type": "string"
+        },
+        "编译/综合/布局布线工具": {
+          "type": "string"
+        },
+        "仿真工具": {
+          "type": "string"
+        },
+        "下载/编程/在线调试工具": {
+          "type": "string"
+        },
+        "调试器": {
+          "type": "string"
+        },
+        "交付文件名": {
+          "type": "string"
+        },
+        "软件规模": {
+          "type": "string",
+          "pattern": "^(?:[ \\t]*(?:[0-9]+(?:\\.[0-9]+)?)[ \\t]*|[ \\t]*)(?![\\s\\S])"
+        }
+      },
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "产品库配管",
+            "产品负责人",
+            "供电方式差异结论",
+            "工作环境差异结论",
+            "所级质量师",
+            "测试人员",
+            "测试仪器名称",
+            "测试供电方式",
+            "测试工作环境",
+            "测试环境影响及有效性评估",
+            "测试环境软件工具",
+            "科研生产处主管领导",
+            "设计人员",
+            "软件工具环境差异结论",
+            "软件负责人",
+            "部门领导",
+            "需求供电方式",
+            "需求工作环境",
+            "需求环境软件工具",
+            "项目软件质量师",
+            "项目配管"
+          ]
+        }
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "properties": {
+        "project_start": {
+          "type": "string",
+          "format": "date"
+        },
+        "work_hours": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^(?!\\.{1,2}(?:@|:|$))[A-Za-z0-9_.-]+(?![\\s\\S])"
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "dates": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "readOnly": true
+        },
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "duration": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "start": {
+                "type": "string",
+                "format": "date"
+              },
+              "finish": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "duration",
+              "start",
+              "finish"
+            ],
+            "additionalProperties": false
+          },
+          "readOnly": true
+        },
+        "work_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "duration": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "start": {
+                "type": "string",
+                "format": "date"
+              },
+              "finish": {
+                "type": "string",
+                "format": "date"
+              },
+              "phase_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "hours": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "work_type": {
+                "enum": [
+                  "项目管理",
+                  "需求分析",
+                  "软件设计",
+                  "软件开发",
+                  "软件测试",
+                  "配置管理",
+                  "质量保证",
+                  "交付验收"
+                ]
+              },
+              "owner_role": {
+                "enum": [
+                  "软件负责人",
+                  "项目软件质量师",
+                  "测试人员",
+                  "项目配管",
+                  "所级质量师",
+                  "部门领导",
+                  "产品库配管",
+                  "产品负责人",
+                  "设计人员",
+                  "科研生产处主管领导"
+                ]
+              },
+              "executor_roles": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "enum": [
+                    "软件负责人",
+                    "项目软件质量师",
+                    "测试人员",
+                    "项目配管",
+                    "所级质量师",
+                    "部门领导",
+                    "产品库配管",
+                    "产品负责人",
+                    "设计人员",
+                    "科研生产处主管领导"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "duration",
+              "start",
+              "finish",
+              "phase_id",
+              "hours",
+              "work_type",
+              "owner_role",
+              "executor_roles"
+            ],
+            "additionalProperties": false
+          },
+          "readOnly": true
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "not": {
+              "required": [
+                "project_start"
+              ]
+            }
+          },
+          "then": {
+            "properties": {
+              "dates": {
+                "maxProperties": 0
+              },
+              "phases": {
+                "maxItems": 0
+              },
+              "work_items": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "templates": {
+      "type": "object",
+      "required": [
+        "mode",
+        "enabled_ids"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "default",
+            "custom"
+          ]
+        },
+        "enabled_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?:asset:(?:templates/docx|reference/workbooks)/|model:(?!\\.{1,2}(?:@|:|$))[A-Za-z0-9_.-]+@(?!\\.{1,2}(?:@|:|$))[A-Za-z0-9_.-]+:documents/)(?=[\\s\\S]*[^/]\\.([dD][oO][cC][xX]|[xX][lL][sS][xX])(?![\\s\\S]))(?!(?:[cC][oO][nN]|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[cC][oO][mM][1-9]|[lL][pP][tT][1-9])(?:\\.|/|$))[^<>:\"\\\\|?*\\x00-\\x1f/]*[^<>:\"\\\\|?*\\x00-\\x1f/ .](?:/(?!(?:[cC][oO][nN]|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[cC][oO][mM][1-9]|[lL][pP][tT][1-9])(?:\\.|/|$))[^<>:\"\\\\|?*\\x00-\\x1f/]*[^<>:\"\\\\|?*\\x00-\\x1f/ .])*(?![\\s\\S])"
+          },
+          "uniqueItems": true
+        },
+        "document_versions": {
+          "type": "object",
+          "propertyNames": {
+            "allOf": [
+              {
+                "$ref": "#/properties/templates/properties/enabled_ids/items"
+              },
+              {
+                "pattern": "\\.[dD][oO][cC][xX]$"
+              }
+            ]
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?=[\\s\\S]*\\S)[^\\x00-\\x1f\\x7f-\\x9f\\u2028\\u2029]+(?![\\s\\S])"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "outputs": {
+      "oneOf": [
+        {
+          "type": "object",
+          "maxProperties": 0
+        },
+        {
+          "type": "object",
+          "required": [
+            "source_revision",
+            "time",
+            "results"
+          ],
+          "properties": {
+            "source_revision": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            },
+            "time": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$"
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "template_id",
+                  "output",
+                  "render_status",
+                  "word_finalize_status",
+                  "message",
+                  "warnings"
+                ],
+                "properties": {
+                  "template_id": {
+                    "type": "string",
+                    "pattern": "^(?:asset:(?:templates/docx|reference/workbooks)/|model:(?!\\.{1,2}(?:@|:|$))[A-Za-z0-9_.-]+@(?!\\.{1,2}(?:@|:|$))[A-Za-z0-9_.-]+:documents/)(?=[\\s\\S]*[^/]\\.([dD][oO][cC][xX]|[xX][lL][sS][xX])(?![\\s\\S]))(?!(?:[cC][oO][nN]|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[cC][oO][mM][1-9]|[lL][pP][tT][1-9])(?:\\.|/|$))[^<>:\"\\\\|?*\\x00-\\x1f/]*[^<>:\"\\\\|?*\\x00-\\x1f/ .](?:/(?!(?:[cC][oO][nN]|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[cC][oO][mM][1-9]|[lL][pP][tT][1-9])(?:\\.|/|$))[^<>:\"\\\\|?*\\x00-\\x1f/]*[^<>:\"\\\\|?*\\x00-\\x1f/ .])*(?![\\s\\S])"
+                  },
+                  "output": {
+                    "oneOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^outputs/(?!(?:[cC][oO][nN]|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[cC][oO][mM][1-9]|[lL][pP][tT][1-9])(?:\\.|/|$))[^<>:\"\\\\|?*\\x00-\\x1f/]*[^<>:\"\\\\|?*\\x00-\\x1f/ .](?:/(?!(?:[cC][oO][nN]|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[cC][oO][mM][1-9]|[lL][pP][tT][1-9])(?:\\.|/|$))[^<>:\"\\\\|?*\\x00-\\x1f/]*[^<>:\"\\\\|?*\\x00-\\x1f/ .])*(?![\\s\\S])"
+                      }
+                    ]
+                  },
+                  "render_status": {
+                    "enum": [
+                      "success",
+                      "failed"
+                    ]
+                  },
+                  "word_finalize_status": {
+                    "enum": [
+                      "success",
+                      "failed",
+                      "unavailable",
+                      "timeout",
+                      "unstable",
+                      "not_applicable"
+                    ]
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "warnings": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "render_status": {
+                          "const": "failed"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "output": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "output": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "data_type",
+          "module_id",
+          "name",
+          "file"
+        ],
+        "properties": {
+          "data_type": {
+            "enum": [
+              "feature",
+              "performance",
+              "interface",
+              "reliability"
+            ]
+          },
+          "module_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          },
+          "name": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "file": {
+            "type": "string",
+            "maxLength": 255,
+            "pattern": "^(?!(?:[cC][oO][nN]|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[cC][oO][mM][1-9]|[lL][pP][tT][1-9])(?:\\.|$))(?!基本数据\\.json$)[^<>:\"/\\\\|?*\\u0000-\\u001f]+\\.[jJ][sS][oO][nN]$",
+            "not": {
+              "pattern": "^(?:人员职责|测试环境)\\.[jJ][sS][oO][nN]$"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "groups": {
+      "type": "object",
+      "required": [
+        "people",
+        "test_environment"
+      ],
+      "properties": {
+        "people": {
+          "type": "string",
+          "const": "人员职责.json"
+        },
+        "test_environment": {
+          "type": "string",
+          "const": "测试环境.json"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$id": "urn:prism:schema:project-basic-v7"
+}

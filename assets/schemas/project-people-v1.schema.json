@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:prism:schema:project-people-v1",
+  "title": "PRISM people field group v1",
+  "type": "object",
+  "required": [
+    "format_version",
+    "data_type",
+    "fields"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "data_type": {
+      "type": "string",
+      "const": "people"
+    },
+    "fields": {
+      "type": "object",
+      "properties": {
+        "软件负责人": {
+          "type": "string"
+        },
+        "项目软件质量师": {
+          "type": "string"
+        },
+        "测试人员": {
+          "type": "string"
+        },
+        "项目配管": {
+          "type": "string"
+        },
+        "所级质量师": {
+          "type": "string"
+        },
+        "部门领导": {
+          "type": "string"
+        },
+        "产品库配管": {
+          "type": "string"
+        },
+        "产品负责人": {
+          "type": "string"
+        },
+        "设计人员": {
+          "type": "string"
+        },
+        "科研生产处主管领导": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

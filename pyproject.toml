@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools==69.5.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prism"
+version = "2.0.0"
+description = "Project Records, Information & Standards Management"
+readme = "README.md"
+requires-python = ">=3.8,<3.13"
+dependencies = [
+    "docxtpl>=0.16,<0.20",
+    "openpyxl>=3.0,<3.2",
+    "pypinyin==0.55.0",
+    "pywin32>=300; sys_platform == 'win32'",
+]
+
+[project.gui-scripts]
+prism = "prism.functional_app:main"
+
+[project.optional-dependencies]
+test = ["pytest>=7,<8.4", "jsonschema>=4.17,<4.18"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+markers = [
+    "agent_only: requires the Python 3.12 Agent environment",
+    "word_com: starts real Microsoft Word COM; run separately on an Office host",
+    "package_smoke: requires built GUI and Agent onedir packages and an expected commit",
+    "anyio: async test executed by the Agent environment's AnyIO plugin",
+]
