@@ -82,7 +82,11 @@ def chapter_body(doc, block, number):
     if block in FORMS:
         title, headers = FORMS[block]
         doc.add_paragraph(title + '由经办人依据实际记录填写。')
-        grid(doc, headers.split('|'), [('待人工填写',) * len(headers.split('|'))])
+        columns = headers.split('|')
+        if number in ('15', '16'):
+            grid(doc, columns, [('待人工填写',) * len(columns)])
+        else:
+            grid(doc, columns, [('待人工填写',)])
     elif block == 'boundary':
         field_rows(doc, [('主要功能', '主要功能'), ('输入', '输入'), ('输出', '输出')])
     elif block == 'boundary_picture':
@@ -195,14 +199,13 @@ def chapter_body(doc, block, number):
         doc.add_heading('软件项', 2)
         tool = 'simulation_tool' if '.' in number else 'program_debug_tool'
         grid(doc, ('序号', '类型', '工具及版本', '符合性', '检查人', '时间'), [
-            (str(index), label, review_value(field), '待人工填写', '待人工填写', '待人工填写')
+            (str(index), label, value(field), '', '', '')
             for index, (label, field) in enumerate([('开发环境', 'IDE'), ('运行或仿真工具', tool)], 1)
         ])
         doc.add_heading('硬件和固件项准备', 2)
         grid(doc, ('序号', '仪器名称', '检查内容', '检查结果', '符合性', '检查人', '时间'), [
             ('{%tr for r in ' + ('system' if system else 'unit') + '_hardware_checks %}',),
-            (value('r.number'), review_value('r.name'), '计量或校准状态', '待人工填写',
-             '待人工填写', '待人工填写', '待人工填写'),
+            (value('r.number'), value('r.name'), '计量或校准状态', '', '', '', ''),
             ('{%tr endfor %}',),
         ])
         doc.add_paragraph('目标器件 {{ 器件型号 }}，调试器 {{ 调试器 }}')
