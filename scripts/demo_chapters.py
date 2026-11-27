@@ -35,7 +35,7 @@ CHAPTERS = {
     '8.1': SPEC + (SIM_APPENDIX,), '11': SPEC + (APPENDIX,),
     '9': REPORT[:2] + (('问题统计', 'problems'),) + REPORT[2:],
     '9.1': REPORT + (SIM_APPENDIX,), '12': REPORT + (APPENDIX,),
-    '13': (('版本说明', 'release configuration changes install'), ('注释', 'terms')),
+    '13': (('版本说明', 'release release_contents configuration changes install'), ('注释', 'terms')),
     '14': (('固件编程指令', 'platform tools install verify'), ('注释', 'terms')),
     '15': (('软件配置管理情况综述', 'release'), ('软件配置管理基本信息', 'configuration'),
            ('专业组划分及权限分配', 'roles access'), ('变更记录', 'changes'), ('基线记录', 'baselines'),

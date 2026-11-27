@@ -123,7 +123,7 @@ def chapter_body(doc, block, number):
             doc.add_heading(heading, 2)
             doc.add_paragraph(review_value(field))
     elif block == 'qualification':
-        for label, group in [('单元或仿真验证', 'unit_test_items'), ('配置项验证', 'config_test_items')]:
+        for label, group in [(value('unit_test_label'), 'unit_test_items'), ('配置项验证', 'config_test_items')]:
             doc.add_heading(label, 2)
             records(doc, ('需求标识', '验证项', '判定依据'), group,
                     ('r.parent.ids.srs', 'r.display_name', 'r.test.expected_result'))
@@ -173,6 +173,10 @@ def chapter_body(doc, block, number):
                          ('产品基线', '产品基线')])
     elif block == 'release':
         field_rows(doc, [('软件标识', 'software_id'), ('软件版本', '版本'), ('发布文件', 'executable_filename')])
+    elif block == 'release_contents':
+        doc.add_heading('软件内容清单', 2)
+        records(doc, ('条目类别', '名称', '标号', '需求标识', '设计标识'), 'items',
+                ('r.kind_label', 'r.name', 'r.code', 'r.ids.srs', 'r.ids.design'))
     elif block == 'install':
         doc.add_paragraph('核对文件标识与目标器件，按本项目确认的操作规程加载文件，并记录使用的工具和版本。')
         field_rows(doc, [('文件', 'executable_filename'), ('器件', '器件型号'), ('工具', 'program_debug_tool')])
@@ -224,9 +228,9 @@ def chapter_body(doc, block, number):
         records(doc, ('测试项', '对象', '任务标识', '需求标识'), cases,
                 ('r.display_name', 'r.parent.name', 'r.parent.ids.taskbook', 'r.parent.ids.srs'))
         doc.add_heading('反向追踪', 2)
-        children = 'config_tests' if system else 'unit_tests'
+        names = cases + '|selectattr("parent.ids.srs", "equalto", r.ids.srs)|map(attribute="display_name")|join("、")'
         records(doc, ('需求标识', '对象', '已配置的测试项'), 'items',
-                ('r.ids.srs', 'r.name', 'r.' + children + '|map(attribute="name")|join("、")'))
+                ('r.ids.srs', 'r.name', names))
     elif block in ('procedures', 'results'):
         if block == 'procedures':
             records(doc, ('测试项', '目的', '操作', '预期'), cases,

@@ -39,7 +39,7 @@ def test_complete_demo_catalog(tmp_path, device):
     interface.update(name="数据输出", code="DATA", direction="输出", definition="一条观测记录",
                      pin_definition="引脚甲", initial_value="空闲", requirement_description="保存后可读")
     unit = new_test("unit_tests")
-    unit.update(name="读取一条记录", procedure="从输出接口读取一条记录", expected_result="返回保存的读数",
+    unit.update(name="数据输出 / 读取一条记录", procedure="从输出接口读取一条记录", expected_result="返回保存的读数",
                 execution_status="passed", result="已读回一条",
                 actual_date="2026-01-12")
     interface["unit_tests"].append(unit)
@@ -48,6 +48,9 @@ def test_complete_demo_catalog(tmp_path, device):
         item = new_item(group)
         item.update(name=label, code=code, requirement_description=label + "需求", design_description=label + "设计")
         getattr(project, group).append(item)
+    unnamed = new_test("config_tests")
+    unnamed.update(procedure="模拟恢复", expected_result="恢复后可以保存")
+    project.reliabilities[0]["config_tests"].append(unnamed)
     model = load_model(ASSETS / "models/gjb5000-simplified/model.json")
     calendar = load_work_calendar(ASSETS / "calendars/cn_workdays_2026_2035.json")
     project.schedule = model.calculate(date(2026, 1, 5), {}, calendar)
@@ -80,6 +83,8 @@ def test_complete_demo_catalog(tmp_path, device):
     assert ["保存单次观测", "未记录", "", ""] in report_rows
     assert ["XQGN001-SAVE", "保存观测值", "保存单次观测"] in report_rows
     assert ["XQJK001-DATA", "数据输出", ""] in report_rows
+    assert ["测试项2", "异常恢复", "RWKK001-REC", "XQKK001-REC"] in report_rows
+    assert ["XQKK001-REC", "异常恢复", "测试项2"] in report_rows
     headings = {p.text.split(" ", 1)[1] for p in Document(str(report)).paragraphs if p.style.name == "Heading 2"}
     assert {"测试环境的影响", "问题报告", "正向追踪", "反向追踪",
             "测试用例1：保存单次观测"} <= headings
@@ -88,10 +93,25 @@ def test_complete_demo_catalog(tmp_path, device):
     assert sum(row[1] == "P5-参数缺项" and "必要环境" in row[3] for row in audit) == 2
     assert any(row[1] == "人工项" and "改进建议" in row[2] for row in audit)
     assert not any(row[1] == "P5-占位符" for row in audit)
-    test_report, = [p for p in docs if ("软件仿真测试报告" if device == "FPGA" else "软件单元测试报告") in p.name]
-    unit_rows = [[c.text for c in row.cells] for t in Document(str(test_report)).tables for row in t.rows]
+    test_label = "仿真测试" if device == "FPGA" else "单元测试"
+    other_label = "单元测试" if device == "FPGA" else "仿真测试"
+    test_report, = [p for p in docs if "软件" + test_label + "报告" in p.name]
+    parsed_report = Document(str(test_report))
+    unit_rows = [[c.text for c in row.cells] for t in parsed_report.tables for row in t.rows]
     assert ["读取一条记录", "通过", "已读回一条", "2026-01-12"] in unit_rows
+    assert ["读取一条记录", "数据输出", "RWJK001-DATA", "XQJK001-DATA"] in unit_rows
+    assert ["XQJK001-DATA", "数据输出", "读取一条记录"] in unit_rows
     assert all("已读回一条" not in row for row in report_rows)
+    summary, = [p for p in docs if "软件研制总结报告" in p.name]
+    for parsed in (parsed_report, Document(str(summary))):
+        text = "\n".join(p.text for p in parsed.paragraphs)
+        assert test_label + "：共2项，通过1项" in text
+        assert other_label not in text
+    assert "软件实现和" + test_label in text
+    release, = [p for p in docs if "软件版本说明" in p.name]
+    contents, = [table for table in Document(str(release)).tables if table.cell(0, 0).text == "条目类别"]
+    assert ["功能", "保存观测值", "SAVE", "XQGN001-SAVE", "SJSM001-SAVE"] in [
+        [c.text for c in row.cells] for row in contents.rows]
     handbook, = [p for p in docs if "软件固件保障手册" in p.name]
     assert any(device in p.text for p in Document(str(handbook)).paragraphs)
     schedule, = output.glob("*.xlsx")
