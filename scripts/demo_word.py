@@ -40,6 +40,14 @@ def field_rows(doc, rows):
     grid(doc, ('项目', '内容'), [(name, value(expr)) for name, expr in rows])
 
 
+def review_fields(doc, labels):
+    grid(doc, ('核对事项', '实际记录'), [(label, '待人工填写') for label in labels])
+
+
+def review_value(expr):
+    return value(expr + '|default("待人工填写", true)')
+
+
 def reference_table(doc, codes):
     condition = ' if r.id in ' + repr(codes)
     records(doc, ('引用文件', '文件标识', '版本'), 'initial_configuration_items',
@@ -74,9 +82,10 @@ def chapter_body(doc, block, number):
     if block in FORMS:
         title, headers = FORMS[block]
         doc.add_paragraph(title + '由经办人依据实际记录填写。')
-        grid(doc, headers.split('|'), [('待人工填写',)])
+        grid(doc, headers.split('|'), [('待人工填写',) * len(headers.split('|'))])
     elif block == 'boundary':
         field_rows(doc, [('主要功能', '主要功能'), ('输入', '输入'), ('输出', '输出')])
+    elif block == 'boundary_picture':
         picture(doc, '系统边界', 'system_boundary')
     elif block == 'platform':
         field_rows(doc, [('器件', '器件型号'), ('器件类型', '器件类型'), ('操作系统', '操作系统'),
@@ -88,23 +97,27 @@ def chapter_body(doc, block, number):
         field_rows(doc, [(role, role) for role in ('软件负责人', '设计人员', '测试人员', '项目配管', '项目软件质量师')])
     elif block == 'task_data':
         for (label, group), field in zip(KINDS, ('task_description', 'description', 'definition', 'task_description')):
-            item_details(doc, group, label + '任务', 'taskbook', field)
+            item_details(doc, group, ('接口说明' if group == 'interfaces' else label), 'taskbook', field)
     elif block == 'requirements':
-        doc.add_heading('运行状态和方式', 2)
+        doc.add_heading('要求的状态和方式', 2)
         field_rows(doc, [('运行平台', '操作系统'), ('软件输入', '输入'), ('软件输出', '输出')])
         for label, group in KINDS:
-            item_details(doc, group, label + '需求', 'srs', 'requirement_description')
+            item_details(doc, group, {'features': 'CSCI能力需求', 'interfaces': 'CSCI外部接口需求'}.get(group, label + '需求'), 'srs', 'requirement_description')
             if group == 'features':
                 doc.add_paragraph('{%p for r in features %}')
                 doc.add_paragraph('{{ r.name }}：{{ r.requirement_description }}')
                 doc.add_paragraph('{%p endfor %}')
             if group == 'interfaces':
                 interface_details(doc)
-                picture(doc, '接口关系', 'interface_relationship')
-        doc.add_heading('开发环境与资源约束', 2)
-        field_rows(doc, [('开发工具', 'IDE'), ('器件型号', '器件型号'), ('可用资源', '外设及内部资源')])
-        doc.add_heading('安全、保障与交付要求', 2)
-        field_rows(doc, [('安全等级', '安全等级'), ('密级', '密级'), ('交付文件', 'executable_filename')])
+                picture(doc, '系统边界', 'system_boundary')
+        doc.add_heading('软件开发环境需求', 2)
+        field_rows(doc, [('开发工具', 'IDE'), ('编译与构建', 'compile_build_tool'), ('工具链语言', '语言')])
+        doc.add_heading('计算机资源需求', 2)
+        field_rows(doc, [('器件型号', '器件型号'), ('可用资源', '外设及内部资源')])
+        for heading, field in [('安全性需求', '安全等级'), ('保密性需求', '密级'),
+                               ('验收、交付和包装需求', 'executable_filename')]:
+            doc.add_heading(heading, 2)
+            doc.add_paragraph(review_value(field))
     elif block == 'qualification':
         for label, group in [('单元或仿真验证', 'unit_test_items'), ('配置项验证', 'config_test_items')]:
             doc.add_heading(label, 2)
@@ -116,6 +129,7 @@ def chapter_body(doc, block, number):
     elif block == 'decisions':
         field_rows(doc, [('配置项输入', 'CSCI输入'), ('配置项输出', 'CSCI输出'), ('行为设计', 'CSCI行为设计决策')])
     elif block == 'architecture':
+        doc.add_heading('CSCI部件', 2)
         picture(doc, '软件架构', 'software_architecture')
         records(doc, ('模块', '类别', '设计标识'), 'items', ('r.name', 'r.kind_label', 'r.ids.design'))
         doc.add_heading('接口设计', 2)
@@ -124,7 +138,10 @@ def chapter_body(doc, block, number):
         picture(doc, '接口关系', 'interface_relationship')
     elif block == 'detailed':
         for label, group in KINDS[:2]:
-            item_details(doc, group, label + '模块', 'design', 'design_description')
+            doc.add_paragraph('{%p for r in ' + group + ' %}')
+            doc.add_heading('{{ 产品名 }}{{ r.name }}模块（{{ r.ids.design }}）', 2)
+            doc.add_paragraph(review_value('r.design_description'))
+            doc.add_paragraph('{%p endfor %}')
         picture(doc, '处理流程', 'main_flow_algorithm')
     elif block == 'reliable_design':
         item_details(doc, 'reliabilities', '可靠性措施', 'design', 'design_description')
@@ -145,6 +162,8 @@ def chapter_body(doc, block, number):
     elif block == 'changes':
         doc.add_paragraph(value('initial_configuration_summary'))
         grid(doc, ('变更编号', '影响版本', '说明', '复核凭据'), [('后续变更时填写',)])
+        if number == '15':
+            review_fields(doc, ('初始版本确认', '最后版本确认', '变更次数与批准凭据'))
     elif block == 'handover':
         field_rows(doc, [('产品', '产品名'), ('软件版本', '版本'), ('交付文件', 'executable_filename'),
                          ('产品基线', '产品基线')])
@@ -163,14 +182,30 @@ def chapter_body(doc, block, number):
     elif block == 'basis':
         records(doc, ('来源', '需求标识', '验证要求'), 'items', ('r.name', 'r.ids.srs', 'r.requirement_description'))
     elif block == 'environment':
-        doc.add_heading('测试环境与需求环境', 2)
-        records(doc, ('环境因素', '测试条件', '需求条件', '差异评估'), 'test_setup_rows',
-                ('r.name', 'r.test', 'r.requirement', 'r.conclusion'))
-        doc.add_paragraph('环境有效性评估　' + value('测试环境影响及有效性评估'))
+        doc.add_heading('测试环境的影响', 2)
+        grid(doc, ('分析项', '测试环境', '需求环境', '结论'), [
+            ('{%tr for r in test_setup_rows %}',),
+            (value('r.name'), review_value('r.test'), review_value('r.requirement'), review_value('r.conclusion')),
+            ('{%tr endfor %}',),
+        ])
+        doc.add_paragraph('环境差异影响及测试有效性评估　' + review_value('测试环境影响及有效性评估'))
+        doc.add_heading('测试环境', 2)
         picture(doc, '测试环境', 'test_environment')
     elif block == 'equipment':
-        doc.add_heading('仪器与软件准备', 2)
-        field_rows(doc, [('测试仪器', '测试仪器名称'), ('开发环境', 'IDE'), ('仿真工具', 'simulation_tool')])
+        doc.add_heading('软件项', 2)
+        tool = 'simulation_tool' if '.' in number else 'program_debug_tool'
+        grid(doc, ('序号', '类型', '工具及版本', '符合性', '检查人', '时间'), [
+            (str(index), label, review_value(field), '待人工填写', '待人工填写', '待人工填写')
+            for index, (label, field) in enumerate([('开发环境', 'IDE'), ('运行或仿真工具', tool)], 1)
+        ])
+        doc.add_heading('硬件和固件项准备', 2)
+        grid(doc, ('序号', '仪器名称', '检查内容', '检查结果', '符合性', '检查人', '时间'), [
+            ('{%tr for r in ' + ('system' if system else 'unit') + '_hardware_checks %}',),
+            (value('r.number'), review_value('r.name'), '计量或校准状态', '待人工填写',
+             '待人工填写', '待人工填写', '待人工填写'),
+            ('{%tr endfor %}',),
+        ])
+        doc.add_paragraph('目标器件 {{ 器件型号 }}，调试器 {{ 调试器 }}')
     elif block == 'case_index':
         doc.add_heading('计划执行的测试', 2)
         records(doc, ('序号', '测试项', '对象', '目的'), cases, ('r.number', 'r.display_name', 'r.parent.name', 'r.test.purpose'))
@@ -182,10 +217,10 @@ def chapter_body(doc, block, number):
         doc.add_paragraph('核对已执行、未执行和待复验用例，由测试负责人记录结束或暂停的依据。')
         grid(doc, ('检查范围', '遗留事项', '决定及依据', '确认人'), [('待人工填写',)])
     elif block == 'case_trace':
-        doc.add_heading('从测试项查需求', 2)
+        doc.add_heading('正向追踪', 2)
         records(doc, ('测试项', '对象', '任务标识', '需求标识'), cases,
                 ('r.display_name', 'r.parent.name', 'r.parent.ids.taskbook', 'r.parent.ids.srs'))
-        doc.add_heading('从需求查测试项', 2)
+        doc.add_heading('反向追踪', 2)
         children = 'config_tests' if system else 'unit_tests'
         records(doc, ('需求标识', '对象', '已配置的测试项'), 'items',
                 ('r.ids.srs', 'r.name', 'r.' + children + '|map(attribute="name")|join("、")'))
@@ -194,7 +229,7 @@ def chapter_body(doc, block, number):
             records(doc, ('测试项', '目的', '操作', '预期'), cases,
                     ('r.display_name', 'r.test.purpose', 'r.test.procedure', 'r.test.expected_result'))
         else:
-            doc.add_heading('执行记录', 2)
+            doc.add_heading('测试情况', 2)
             actual = 'r.test.record' if system else 'r.test.result'
             records(doc, ('测试项', '执行状态', '实测记录', '记录日期'), cases,
                     ('r.display_name', 'r.execution_label', actual, 'r.test.actual_date'))
@@ -206,11 +241,16 @@ def chapter_body(doc, block, number):
             doc.add_paragraph('{%p endif %}')
         doc.add_paragraph('{%p endfor %}')
     elif block == 'case_record':
-        records(doc, ('测试项', '操作', '预期', '执行状态', '实测记录'), cases,
-                ('r.display_name', 'r.test.procedure', 'r.test.expected_result', 'r.execution_label',
-                 'r.test.record' if system else 'r.test.result'))
+        doc.add_paragraph('{%p for r in ' + cases + ' %}')
+        doc.add_heading('测试用例{{ r.number }}：{{ r.display_name }}', 2)
+        field_rows(doc, [('操作', 'r.test.procedure'), ('预期', 'r.test.expected_result'),
+                         ('执行状态', 'r.execution_label'),
+                         ('实测记录', 'r.test.record' if system else 'r.test.result')])
+        doc.add_paragraph('{%p else %}')
+        doc.add_paragraph('尚无用例')
+        doc.add_paragraph('{%p endfor %}')
     elif block == 'summary':
-        doc.add_heading('执行情况统计', 2)
+        doc.add_heading('对被测试软件的总体评价', 2)
         field_rows(doc, [(label, summary + '.counts.' + key) for label, key in
                          [('通过', 'passed'), ('未通过', 'failed'), ('未执行', 'not_executed'), ('未记录', 'not_recorded')]])
         doc.add_heading('待跟进的测试项', 2)
@@ -266,20 +306,38 @@ def make_word(path, number, title, purpose, platform=''):
     page = OxmlElement('w:fldSimple')
     page.set(qn('w:instr'), ' PAGE ')
     section.footer.paragraphs[0]._p.append(page)
-    doc.add_page_break()
-    doc.add_heading('范围', 1)
+    doc.add_heading('范围', 1).paragraph_format.page_break_before = True
     doc.add_heading('标识', 2)
-    field_rows(doc, [('项目', '项目名'), ('软件标识', 'software_id'), ('软件版本', '版本')])
+    field_rows(doc, [('项目', '项目名'), ('软件标识', 'software_id'), ('软件版本', '版本'),
+                     ('器件型号', '器件型号|default("待人工填写", true)')])
     doc.add_heading('系统概述', 2)
-    doc.add_paragraph('本项目的软件产品为“{{ 产品名 }}”。主要功能：{{ 主要功能 }}')
+    doc.add_paragraph('本项目的软件产品为“{{ 产品名 }}”。主要功能：{{ 主要功能|default("待人工填写", true) }}')
     doc.add_heading('文档概述', 2)
     doc.add_paragraph(purpose)
+    for topic, description in TOPICS.get((number, '范围'), ()):
+        doc.add_heading(topic, 2)
+        doc.add_paragraph(description)
+    if number in ('7', '7.1', '10'):
+        doc.add_heading('与其他计划之间的关系', 2)
+        doc.add_paragraph('按开发、质量和配置计划核对测试基线、评审时间和归档安排。')
     doc.add_heading('引用文档', 1)
     reference_table(doc, REFERENCES[number])
     for heading, blocks in CHAPTERS[number]:
         doc.add_heading(heading, 1)
         for block in blocks.split():
             chapter_body(doc, block, number)
+        if number in ('9', '9.1', '12') and heading == '测试结果概述':
+            doc.add_heading('改进建议', 2)
+            review_fields(doc, ('建议和对应问题记录',))
+        if number == '12' and heading == '详细测试结果':
+            for topic, labels in [('问题报告', ('问题编号及关联用例',)),
+                                  ('问题统计', ('统计范围与数量',)),
+                                  ('各问题描述', ('复现记录与影响', '处理与复验凭据'))]:
+                doc.add_heading(topic, 2)
+                review_fields(doc, labels)
+        if number in ('9', '9.1') and heading == '详细测试结果':
+            doc.add_heading('回归测试', 2)
+            review_fields(doc, ('回归范围', '记录编号及结论'))
         for topic, description in TOPICS.get((number, heading), ()):
             doc.add_heading(topic, 2)
             doc.add_paragraph(description)

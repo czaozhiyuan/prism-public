@@ -7,6 +7,7 @@ from openpyxl import load_workbook
 import pytest
 
 from prism.generation_core import plan_generation, render_generation
+from prism.document_review import review_rows_for_document
 from prism.items import new_item, new_test
 from prism.lifecycle import load_model
 from prism.project import Project
@@ -21,6 +22,8 @@ ASSETS = Path(__file__).resolve().parents[1] / "assets"
 def test_complete_demo_catalog(tmp_path, device):
     project = Project.create(tmp_path / "project", "温度记录演示")
     project.fields.update({"产品名": "桌面记录器", "器件类型": device, "版本": "V1.0"})
+    project.fields.update({"测试供电方式": "演示电源", "需求供电方式": "演示电源",
+                           "供电方式差异结论": "供电方式一致"})
     for index, role in enumerate(PEOPLE_FIELDS, 1):
         project.fields[role] = "Demo Member {}".format(index)
     feature = new_item("features")
@@ -77,6 +80,14 @@ def test_complete_demo_catalog(tmp_path, device):
     assert ["保存单次观测", "未记录", "", ""] in report_rows
     assert ["XQGN001-SAVE", "保存观测值", "保存单次观测"] in report_rows
     assert ["XQJK001-DATA", "数据输出", ""] in report_rows
+    headings = {p.text.split(" ", 1)[1] for p in Document(str(report)).paragraphs if p.style.name == "Heading 2"}
+    assert {"测试环境的影响", "问题报告", "正向追踪", "反向追踪",
+            "测试用例1：保存单次观测"} <= headings
+    source = ASSETS / "templates/docx/12.配置项系统软件测试报告_模板.docx"
+    audit = review_rows_for_document(source, report)
+    assert sum(row[1] == "P5-参数缺项" and "必要环境" in row[3] for row in audit) == 2
+    assert any(row[1] == "人工项" and "改进建议" in row[2] for row in audit)
+    assert not any(row[1] == "P5-占位符" for row in audit)
     test_report, = [p for p in docs if ("软件仿真测试报告" if device == "FPGA" else "软件单元测试报告") in p.name]
     unit_rows = [[c.text for c in row.cells] for t in Document(str(test_report)).tables for row in t.rows]
     assert ["读取一条记录", "通过", "已读回一条", "2026-01-12"] in unit_rows

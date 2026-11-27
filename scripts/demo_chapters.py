@@ -11,9 +11,9 @@ REPORT = (('测试结果概述', 'summary environment'), ('详细测试结果', 
 APPENDIX = ('附录　测试用例记录', 'case_record')
 SIM_APPENDIX = ('附录　仿真测试用例记录', 'case_record')
 CHAPTERS = {
-    '1': (('运行环境要求', 'platform'), ('技术要求', 'task_data'), ('设计约束', 'design_limits'),
+    '1': (('运行环境要求', 'platform boundary_picture'), ('技术要求', 'task_data'), ('设计约束', 'design_limits'),
           ('质量控制要求', 'quality'), ('验收和交付', 'handover'), ('软件保障要求', 'support'),
-          ('进度和里程碑', 'milestones milestone_picture')),
+          ('进度和里程碑', 'milestones')),
     '2': (('组织和职责', 'roles'), ('标准、条例和约定', 'policy'),
           ('活动审核（过程审核）', 'audits'), ('工作产品审核（产品审核）', 'quality'),
           ('不符合问题的解决', 'issues'), ('工具、技术和方法', 'tools'),
