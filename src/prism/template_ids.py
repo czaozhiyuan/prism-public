@@ -34,9 +34,13 @@ TEST_TEMPLATE_PAIRS = (
 )
 
 
+def uses_simulation_tests(device_type):
+    return str(device_type or '').strip().upper() == 'FPGA'
+
+
 def device_test_template_id(template_id, device_type=''):
     """Route only the bundled test pairs; unknown devices use the MCU side."""
-    fpga = str(device_type or '').strip().upper() == 'FPGA'
+    fpga = uses_simulation_tests(device_type)
     for pair in TEST_TEMPLATE_PAIRS:
         if template_id in pair:
             return pair[1 if fpga else 0]

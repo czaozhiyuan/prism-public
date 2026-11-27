@@ -22,7 +22,9 @@ Agent 使用独立的 CPython 3.12.13 x64 环境。安装 uv 0.11.7，在仓库�
 
 演示数据使用“温度记录演示”这个虚构项目。项目的单位字段由使用者自行填写。内置资源包含 20 份可选 Word 模板、1 份 FPGA 手册变体、进度表、键值表示例和一页操作指南。MCU 与 FPGA 会自动选用各自的测试文档。
 
-资源的生成源码位于 `scripts/make_demo_assets.py`。需要修改模板的开发者可在单独的工具环境安装 python-docx、openpyxl、reportlab，运行该脚本后再运行 `scripts/build_assets_manifest.py` 更新校验清单。
+需求、设计和测试文档可以按条目标识彼此追踪。测试报告分别展示预期结果、执行状态和实测记录。审核意见、签署和第三方评测由使用者按实际情况补录。进度表以 13 列展示 93 项工作，包含计划工时和每项工作的输出物。
+
+资源的生成源码位于 `scripts/make_demo_assets.py`。需要修改模板的开发者可在单独的工具环境安装 python-docx、openpyxl、reportlab。运行 `python scripts/make_demo_assets.py --templates-only` 可重新生成 Word 模板和进度表，再运行 `python scripts/build_assets_manifest.py` 更新校验清单。
 
 ## 回归与资源
 

@@ -171,8 +171,15 @@ def item_context(project):
                     for source in ("taskbook", "srs")]
             context[kind + "_" + view] = rows
             context[view].extend(rows)
+    from .template_ids import uses_simulation_tests
+
+    unit_test_label = ("仿真测试" if uses_simulation_tests(project.fields.get("器件类型"))
+                       else dict(TEST_TYPES)["unit_tests"])
+    context["unit_test_label"] = unit_test_label
     context["test_summaries"] = {}
     for category, title in TEST_TYPES:
+        if category == "unit_tests":
+            title = unit_test_label
         rows = context[category.replace("tests", "test_items")]
         counts = {status: 0 for status in EXECUTION_STATUSES}
         for row in rows:
